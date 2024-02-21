@@ -22,8 +22,8 @@ public partial class Player : RigidBody3D
         BodyEntered += (Node body) => OnBodyEntered(body);
 
         // Get References to Children
-        ExplosionSFX = GetNode<AudioStreamPlayer>("SFXPlayers/ExplosionSFX");
-        SuccessSFX = GetNode<AudioStreamPlayer>("SFXPlayers/SuccessSFX");
+        ExplosionSFX = GetNode<AudioStreamPlayer>("%ExplosionSFX");
+        SuccessSFX = GetNode<AudioStreamPlayer>("%SuccessSFX");
 
         base._Ready();
     }

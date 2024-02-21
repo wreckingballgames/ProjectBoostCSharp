@@ -30,7 +30,9 @@ shape = SubResource("BoxShape3D_pni5u")
 [node name="SFXPlayers" type="Node" parent="."]
 
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="SFXPlayers"]
+unique_name_in_owner = true
 stream = ExtResource("2_0o3p1")
 
 [node name="SuccessSFX" type="AudioStreamPlayer" parent="SFXPlayers"]
+unique_name_in_owner = true
 stream = ExtResource("3_4hjnd")
