@@ -12,7 +12,7 @@ public partial class Player : RigidBody3D
 
         if (Input.IsActionPressed("boost"))
         {
-            ApplyCentralForce(Godot.Vector3.Up * deltaAsFloat * 1000.0F);;
+            ApplyCentralForce(Basis.Y * deltaAsFloat * 1000.0F);;
         }
 
         if (Input.IsActionPressed("rotate_left"))
