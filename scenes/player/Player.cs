@@ -9,6 +9,8 @@ public partial class Player : RigidBody3D
     [Export(PropertyHint.Range, "750.0F, 3000.0F")]
     private float Thrust {get; set;} = 1000.0F;
 
+    private String NextLevelPath {get; set;}
+
     public override void _Ready()
     {
         BodyEntered += (Node body) => OnBodyEntered(body);
@@ -45,7 +47,8 @@ public partial class Player : RigidBody3D
         }
         else if (body.IsInGroup("goal"))
         {
-            CompleteLevel();
+            LandingPad goal = body as LandingPad;
+            CompleteLevel(goal?.NextLevelPath);
         }
     }
 
@@ -55,9 +58,9 @@ public partial class Player : RigidBody3D
         GetTree().ReloadCurrentScene();
     }
 
-    private void CompleteLevel()
+    private void CompleteLevel(String nextLevelPath)
     {
         GD.Print("Level Complete!");
-        GetTree().Quit();
+        GetTree().ChangeSceneToFile(nextLevelPath);
     }
 }
