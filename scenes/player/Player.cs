@@ -55,7 +55,7 @@ public partial class Player : RigidBody3D
     private void CrashSequence()
     {
         GD.Print("KABLOOEY");
-        GetTree().ReloadCurrentScene();
+        GetTree().CallDeferred("reload_current_scene");
     }
 
     private void CompleteLevel(String nextLevelPath)
@@ -67,7 +67,7 @@ public partial class Player : RigidBody3D
         }
         else
         {
-            GetTree().Quit();
+            GetTree().CallDeferred("quit");
         }
     }
 }
