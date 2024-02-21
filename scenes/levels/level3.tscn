@@ -1,7 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://csxv4vsvrei6x"]
+[gd_scene load_steps=10 format=3 uid="uid://djb6xjykx66lh"]
 
-[ext_resource type="Script" path="res://scenes/world/LandingPad.cs" id="1_6qii5"]
-[ext_resource type="PackedScene" uid="uid://jo5mje5xyoi0" path="res://scenes/player/player.tscn" id="2_dtcha"]
+[ext_resource type="Script" path="res://scenes/world/LandingPad.cs" id="1_tjm27"]
+[ext_resource type="PackedScene" uid="uid://jo5mje5xyoi0" path="res://scenes/player/player.tscn" id="2_il43w"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_obrfd"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -44,9 +44,15 @@ size = Vector3(30, 8, 5)
 material = SubResource("StandardMaterial3D_lypp3")
 
 [node name="Obstacle" type="CSGBox3D" parent="." groups=["hazard"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.86825, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.59719, 5.87953, 0)
 use_collision = true
-size = Vector3(5, 3, 5)
+size = Vector3(2, 4, 5)
+material = SubResource("StandardMaterial3D_7irpu")
+
+[node name="Obstacle2" type="CSGBox3D" parent="." groups=["hazard"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.21352, 4.57014, 0)
+use_collision = true
+size = Vector3(2, 4, 5)
 material = SubResource("StandardMaterial3D_7irpu")
 
 [node name="LaunchPad" type="CSGBox3D" parent="."]
@@ -60,11 +66,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.65391, 0.25, 0)
 use_collision = true
 size = Vector3(4, 0.5, 4)
 material = SubResource("StandardMaterial3D_0k0h3")
-script = ExtResource("1_6qii5")
-NextLevelPath = "res://scenes/levels/level3.tscn"
+script = ExtResource("1_tjm27")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.988354, -0.152175, 0, 0.152175, 0.988354, 0, 4, 11.1503)
 
-[node name="Player" parent="." instance=ExtResource("2_dtcha")]
+[node name="Player" parent="." instance=ExtResource("2_il43w")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.64261, 1.5, 0)
