@@ -60,20 +60,18 @@ public partial class Player : RigidBody3D
 
     private void CrashSequence()
     {
+        // TODO: Add UI popup for crashing
         GD.Print("KABLOOEY");
-        SetProcess(false);
-        IsTransitioning = true;
-        Tween tween = CreateTween();
-        tween.TweenInterval(TransitionTime);
+        
+        Tween tween = BeginTransition();
         tween.TweenCallback(Callable.From(() => GetTree().ReloadCurrentScene()));
     }
 
     private void CompleteLevel(String nextLevelPath)
     {
+        // TODO: Add UI popup for completing level (one for each condition)
         GD.Print("Level Complete!");
-        IsTransitioning = true;
-        Tween tween = CreateTween();
-        tween.TweenInterval(TransitionTime);
+        Tween tween = BeginTransition();
         if (nextLevelPath != null)
         {
             tween.TweenCallback(Callable.From(() => GetTree().ChangeSceneToFile(nextLevelPath)));
@@ -82,5 +80,21 @@ public partial class Player : RigidBody3D
         {
             tween.TweenCallback(Callable.From(() => GetTree().Quit()));
         }
+    }
+
+    private Tween BeginTransition()
+    {
+        // FIXME
+        // Is this nasty function with side effects and a messy object creation
+        //   better than repeating three lines of code in two places?
+        // In this case, I think the function is better. This transition process
+        //   necessarily always leads to resetting the scene, dodging the
+        //   potential consequences of my ignorance of where this tween lives.
+        SetProcess(false);
+        Tween tween = CreateTween();
+        tween.BindNode(this);
+        tween.TweenInterval(TransitionTime);
+        IsTransitioning = true;
+        return tween;
     }
 }
