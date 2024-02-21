@@ -41,11 +41,23 @@ public partial class Player : RigidBody3D
     {
         if (body.IsInGroup("hazard"))
         {
-            GD.Print("You died.");
+            CrashSequence();
         }
         else if (body.IsInGroup("goal"))
         {
-            GD.Print("A winner is you!");
+            CompleteLevel();
         }
+    }
+
+    private void CrashSequence()
+    {
+        GD.Print("KABLOOEY");
+        GetTree().ReloadCurrentScene();
+    }
+
+    private void CompleteLevel()
+    {
+        GD.Print("Level Complete!");
+        GetTree().Quit();
     }
 }
