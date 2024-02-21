@@ -61,6 +61,13 @@ public partial class Player : RigidBody3D
     private void CompleteLevel(String nextLevelPath)
     {
         GD.Print("Level Complete!");
-        GetTree().ChangeSceneToFile(nextLevelPath);
+        if (nextLevelPath != null)
+        {
+            GetTree().CallDeferred("change_scene_to_file", nextLevelPath);
+        }
+        else
+        {
+            GetTree().Quit();
+        }
     }
 }
