@@ -36,6 +36,9 @@ public partial class Player : RigidBody3D
 
     private void OnBodyEntered(Node body)
     {
-        GD.Print(body.Name);
+        if (body.IsInGroup("landing_pad"))
+        {
+            GD.Print("A winner is you!");
+        }
     }
 }
