@@ -55,7 +55,9 @@ public partial class Player : RigidBody3D
     private void CrashSequence()
     {
         GD.Print("KABLOOEY");
-        GetTree().CallDeferred("reload_current_scene");
+        Tween tween = CreateTween();
+        tween.TweenInterval(1.0F);
+        tween.TweenCallback(new Callable(GetTree(), "reload_current_scene"));
     }
 
     private void CompleteLevel(String nextLevelPath)
