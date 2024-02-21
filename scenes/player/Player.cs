@@ -6,6 +6,13 @@ public partial class Player : RigidBody3D
 {
     private float RotationSpeed {get; set;} = 100F;
 
+    public override void _Ready()
+    {
+        BodyEntered += (Node body) => OnBodyEntered(body);
+
+        base._Ready();
+    }
+
     public override void _Process(double delta)
     {
         float deltaAsFloat = (float)delta;
@@ -25,5 +32,10 @@ public partial class Player : RigidBody3D
         }
 
         base._Process(delta);
+    }
+
+    private void OnBodyEntered(Node body)
+    {
+        GD.Print(body.Name);
     }
 }
