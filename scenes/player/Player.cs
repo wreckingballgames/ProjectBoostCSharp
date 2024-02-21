@@ -4,7 +4,10 @@ using System.Runtime.CompilerServices;
 
 public partial class Player : RigidBody3D
 {
-    private float RotationSpeed {get; set;} = 100F;
+    [Export]
+    private float RotationSpeed {get; set;} = 100.0F;
+    [Export]
+    private float Thrust {get; set;} = 1000.0F;
 
     public override void _Ready()
     {
@@ -19,7 +22,7 @@ public partial class Player : RigidBody3D
 
         if (Input.IsActionPressed("boost"))
         {
-            ApplyCentralForce(Basis.Y * deltaAsFloat * 1000.0F);;
+            ApplyCentralForce(Basis.Y * deltaAsFloat * Thrust);;
         }
 
         if (Input.IsActionPressed("rotate_left"))
