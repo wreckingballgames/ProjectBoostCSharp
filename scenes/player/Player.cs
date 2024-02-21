@@ -10,6 +10,8 @@ public partial class Player : RigidBody3D
     private float Thrust {get; set;} = 1000.0F;
 
     private String NextLevelPath {get; set;}
+    private bool IsTransitioning {get; set;} = false;
+    private float TransitionTime {get; set;} = 1.0F;
 
     public override void _Ready()
     {
@@ -41,6 +43,10 @@ public partial class Player : RigidBody3D
 
     private void OnBodyEntered(Node body)
     {
+        if (IsTransitioning)
+        {
+            return;
+        }
         if (body.IsInGroup("hazard"))
         {
             CrashSequence();
@@ -55,21 +61,26 @@ public partial class Player : RigidBody3D
     private void CrashSequence()
     {
         GD.Print("KABLOOEY");
+        SetProcess(false);
+        IsTransitioning = true;
         Tween tween = CreateTween();
-        tween.TweenInterval(1.0F);
-        tween.TweenCallback(new Callable(GetTree(), "reload_current_scene"));
+        tween.TweenInterval(TransitionTime);
+        tween.TweenCallback(Callable.From(() => GetTree().ReloadCurrentScene()));
     }
 
     private void CompleteLevel(String nextLevelPath)
     {
         GD.Print("Level Complete!");
+        IsTransitioning = true;
+        Tween tween = CreateTween();
+        tween.TweenInterval(TransitionTime);
         if (nextLevelPath != null)
         {
-            GetTree().CallDeferred("change_scene_to_file", nextLevelPath);
+            tween.TweenCallback(Callable.From(() => GetTree().ChangeSceneToFile(nextLevelPath)));
         }
         else
         {
-            GetTree().CallDeferred("quit");
+            tween.TweenCallback(Callable.From(() => GetTree().Quit()));
         }
     }
 }
