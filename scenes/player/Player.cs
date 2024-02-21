@@ -36,7 +36,11 @@ public partial class Player : RigidBody3D
 
     private void OnBodyEntered(Node body)
     {
-        if (body.IsInGroup("goal"))
+        if (body.IsInGroup("hazard"))
+        {
+            GD.Print("You died.");
+        }
+        else if (body.IsInGroup("goal"))
         {
             GD.Print("A winner is you!");
         }
