@@ -11,11 +11,19 @@ public partial class Player : RigidBody3D
 
     private String NextLevelPath {get; set;}
     private bool IsTransitioning {get; set;} = false;
-    private float TransitionTime {get; set;} = 1.0F;
+    private float TransitionTime {get; set;} = 1.5F;
+
+    private AudioStreamPlayer ExplosionSFX {get; set;}
+    private AudioStreamPlayer SuccessSFX {get; set;}
 
     public override void _Ready()
     {
+        // Connect Signals
         BodyEntered += (Node body) => OnBodyEntered(body);
+
+        // Get References to Children
+        ExplosionSFX = GetNode<AudioStreamPlayer>("SFXPlayers/ExplosionSFX");
+        SuccessSFX = GetNode<AudioStreamPlayer>("SFXPlayers/SuccessSFX");
 
         base._Ready();
     }
@@ -62,6 +70,7 @@ public partial class Player : RigidBody3D
     {
         // TODO: Add UI popup for crashing
         GD.Print("KABLOOEY");
+        ExplosionSFX.Play();
         
         Tween tween = BeginTransition();
         tween.TweenCallback(Callable.From(() => GetTree().ReloadCurrentScene()));
@@ -71,6 +80,8 @@ public partial class Player : RigidBody3D
     {
         // TODO: Add UI popup for completing level (one for each condition)
         GD.Print("Level Complete!");
+        SuccessSFX.Play();
+
         Tween tween = BeginTransition();
         if (nextLevelPath != null)
         {
