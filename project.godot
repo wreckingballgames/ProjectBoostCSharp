@@ -18,6 +18,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="ProjectBoostCSharp"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/micro/OneDrive/Videos/GodotRecordings/boost_demo.avi"
+
 [input]
 
 boost={
