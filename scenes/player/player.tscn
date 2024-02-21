@@ -8,6 +8,12 @@
 size = Vector3(1, 1.98999, 1)
 
 [node name="Player" type="RigidBody3D"]
+axis_lock_linear_z = true
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+can_sleep = false
+linear_damp = 1.0
+angular_damp = 3.0
 script = ExtResource("1_biogh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
