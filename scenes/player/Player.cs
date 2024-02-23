@@ -15,6 +15,7 @@ public partial class Player : RigidBody3D
 
     private AudioStreamPlayer ExplosionSFX {get; set;}
     private AudioStreamPlayer SuccessSFX {get; set;}
+    private AudioStreamPlayer3D RocketSFX {get; set;}
 
     public override void _Ready()
     {
@@ -24,6 +25,7 @@ public partial class Player : RigidBody3D
         // Get References to Children
         ExplosionSFX = GetNode<AudioStreamPlayer>("%ExplosionSFX");
         SuccessSFX = GetNode<AudioStreamPlayer>("%SuccessSFX");
+        RocketSFX = GetNode<AudioStreamPlayer3D>("%RocketSFX");
 
         base._Ready();
     }
@@ -34,8 +36,10 @@ public partial class Player : RigidBody3D
 
         if (Input.IsActionPressed("boost"))
         {
-            ApplyCentralForce(Basis.Y * deltaAsFloat * Thrust);;
+            ApplyCentralForce(Basis.Y * deltaAsFloat * Thrust);
         }
+
+        HandleRocketSFX();
 
         if (Input.IsActionPressed("rotate_left"))
         {
@@ -107,5 +111,17 @@ public partial class Player : RigidBody3D
         tween.TweenInterval(TransitionTime);
         IsTransitioning = true;
         return tween;
+    }
+
+    private void HandleRocketSFX()
+    {
+        if (Input.IsActionJustPressed("boost"))
+        {
+            RocketSFX.Play();
+        }
+        else if (Input.IsActionJustReleased("boost"))
+        {
+            RocketSFX.Stop();
+        }
     }
 }
