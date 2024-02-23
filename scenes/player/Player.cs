@@ -32,23 +32,8 @@ public partial class Player : RigidBody3D
 
     public override void _Process(double delta)
     {
-        float deltaAsFloat = (float)delta;
-
-        if (Input.IsActionPressed("boost"))
-        {
-            ApplyCentralForce(Basis.Y * deltaAsFloat * Thrust);
-        }
-
+        HandleInput((float)delta);
         HandleRocketSFX();
-
-        if (Input.IsActionPressed("rotate_left"))
-        {
-            ApplyTorque(new(0.0F, 0.0F, TorqueThrust * deltaAsFloat));
-        }
-        else if (Input.IsActionPressed("rotate_right"))
-        {
-            ApplyTorque(new(0.0F, 0.0F, -TorqueThrust * deltaAsFloat));
-        }
 
         base._Process(delta);
     }
@@ -111,6 +96,23 @@ public partial class Player : RigidBody3D
         tween.TweenInterval(TransitionTime);
         IsTransitioning = true;
         return tween;
+    }
+
+    private void HandleInput(float delta)
+    {
+        if (Input.IsActionPressed("boost"))
+        {
+            ApplyCentralForce(Basis.Y * delta * Thrust);
+        }
+
+        if (Input.IsActionPressed("rotate_left"))
+        {
+            ApplyTorque(new(0.0F, 0.0F, TorqueThrust * delta));
+        }
+        else if (Input.IsActionPressed("rotate_right"))
+        {
+            ApplyTorque(new(0.0F, 0.0F, -TorqueThrust * delta));
+        }
     }
 
     private void HandleRocketSFX()
