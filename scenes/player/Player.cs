@@ -36,7 +36,7 @@ public partial class Player : RigidBody3D
     public override void _Process(double delta)
     {
         HandleInput((float)delta);
-        HandleBoostEffects();
+        HandleRocketSFX();
 
         base._Process(delta);
     }
@@ -118,17 +118,15 @@ public partial class Player : RigidBody3D
         }
     }
 
-    private void HandleBoostEffects()
+    private void HandleRocketSFX()
     {
         if (Input.IsActionJustPressed("boost"))
         {
             RocketSFX.Play();
-            BoosterParticles.Emitting = true;
         }
         else if (Input.IsActionJustReleased("boost"))
         {
             RocketSFX.Stop();
-            BoosterParticles.Emitting = false;
         }
     }
 }

@@ -43,7 +43,12 @@ stream = ExtResource("3_4hjnd")
 unique_name_in_owner = true
 stream = ExtResource("4_eeu7g")
 
-[node name="BoosterParticles" parent="." instance=ExtResource("5_r1qdv")]
+[node name="BoosterParticlesL" parent="." instance=ExtResource("5_r1qdv")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.00562, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.295695, -1.00562, 0)
+emitting = false
+
+[node name="BoosterParticlesR" parent="." instance=ExtResource("5_r1qdv")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.302736, -1.00562, 0)
 emitting = false
