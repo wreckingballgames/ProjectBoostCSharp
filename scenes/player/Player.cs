@@ -17,6 +17,8 @@ public partial class Player : RigidBody3D
     private AudioStreamPlayer SuccessSFX {get; set;}
     private AudioStreamPlayer3D RocketSFX {get; set;}
 
+    private GpuParticles3D BoosterParticles {get; set;}
+
     public override void _Ready()
     {
         // Connect Signals
@@ -26,6 +28,7 @@ public partial class Player : RigidBody3D
         ExplosionSFX = GetNode<AudioStreamPlayer>("%ExplosionSFX");
         SuccessSFX = GetNode<AudioStreamPlayer>("%SuccessSFX");
         RocketSFX = GetNode<AudioStreamPlayer3D>("%RocketSFX");
+        BoosterParticles = GetNode<GpuParticles3D>("%BoosterParticles");
 
         base._Ready();
     }
@@ -33,7 +36,7 @@ public partial class Player : RigidBody3D
     public override void _Process(double delta)
     {
         HandleInput((float)delta);
-        HandleRocketSFX();
+        HandleBoostEffects();
 
         base._Process(delta);
     }
@@ -115,15 +118,17 @@ public partial class Player : RigidBody3D
         }
     }
 
-    private void HandleRocketSFX()
+    private void HandleBoostEffects()
     {
         if (Input.IsActionJustPressed("boost"))
         {
             RocketSFX.Play();
+            BoosterParticles.Emitting = true;
         }
         else if (Input.IsActionJustReleased("boost"))
         {
             RocketSFX.Stop();
+            BoosterParticles.Emitting = false;
         }
     }
 }
