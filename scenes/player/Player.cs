@@ -21,6 +21,9 @@ public partial class Player : RigidBody3D
     private GpuParticles3D BoosterParticlesC {get; set;}
     private GpuParticles3D BoosterParticlesR {get; set;}
 
+    private GpuParticles3D ExplosionParticles {get; set;}
+    private GpuParticles3D SuccessParticles {get; set;}
+
     public override void _Ready()
     {
         // Connect Signals
@@ -28,7 +31,9 @@ public partial class Player : RigidBody3D
 
         // Get References to Children
         ExplosionSFX = GetNode<AudioStreamPlayer>("%ExplosionSFX");
+        ExplosionParticles = GetNode<GpuParticles3D>("%ExplosionParticles");
         SuccessSFX = GetNode<AudioStreamPlayer>("%SuccessSFX");
+        SuccessParticles = GetNode<GpuParticles3D>("%SuccessParticles");
         RocketSFX = GetNode<AudioStreamPlayer3D>("%RocketSFX");
         BoosterParticlesL = GetNode<GpuParticles3D>("%BoosterParticlesL");
         BoosterParticlesC = GetNode<GpuParticles3D>("%BoosterParticlesC");
@@ -67,6 +72,7 @@ public partial class Player : RigidBody3D
         // TODO: Add UI popup for crashing
         GD.Print("KABLOOEY");
         ExplosionSFX.Play();
+        ExplosionParticles.Emitting = true;
         
         Tween tween = BeginTransition();
         tween.TweenCallback(Callable.From(() => GetTree().ReloadCurrentScene()));
@@ -77,6 +83,7 @@ public partial class Player : RigidBody3D
         // TODO: Add UI popup for completing level (one for each condition)
         GD.Print("Level Complete!");
         SuccessSFX.Play();
+        SuccessParticles.Emitting = true;
 
         Tween tween = BeginTransition();
         if (nextLevelPath != null)
