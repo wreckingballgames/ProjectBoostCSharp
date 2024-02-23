@@ -12,6 +12,7 @@
 size = Vector3(1, 1.98999, 1)
 
 [node name="Player" type="RigidBody3D"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
 axis_lock_linear_z = true
 axis_lock_angular_x = true
 axis_lock_angular_y = true
@@ -46,6 +47,11 @@ stream = ExtResource("4_eeu7g")
 [node name="BoosterParticlesL" parent="." instance=ExtResource("5_r1qdv")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.295695, -1.00562, 0)
+emitting = false
+
+[node name="BoosterParticlesC" parent="." instance=ExtResource("5_r1qdv")]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00182235, -1.00562, 0)
 emitting = false
 
 [node name="BoosterParticlesR" parent="." instance=ExtResource("5_r1qdv")]

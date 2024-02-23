@@ -17,7 +17,9 @@ public partial class Player : RigidBody3D
     private AudioStreamPlayer SuccessSFX {get; set;}
     private AudioStreamPlayer3D RocketSFX {get; set;}
 
-    private GpuParticles3D BoosterParticles {get; set;}
+    private GpuParticles3D BoosterParticlesL {get; set;}
+    private GpuParticles3D BoosterParticlesC {get; set;}
+    private GpuParticles3D BoosterParticlesR {get; set;}
 
     public override void _Ready()
     {
@@ -28,7 +30,9 @@ public partial class Player : RigidBody3D
         ExplosionSFX = GetNode<AudioStreamPlayer>("%ExplosionSFX");
         SuccessSFX = GetNode<AudioStreamPlayer>("%SuccessSFX");
         RocketSFX = GetNode<AudioStreamPlayer3D>("%RocketSFX");
-        BoosterParticles = GetNode<GpuParticles3D>("%BoosterParticles");
+        BoosterParticlesL = GetNode<GpuParticles3D>("%BoosterParticlesL");
+        BoosterParticlesC = GetNode<GpuParticles3D>("%BoosterParticlesC");
+        BoosterParticlesR = GetNode<GpuParticles3D>("%BoosterParticlesR");
 
         base._Ready();
     }
@@ -106,16 +110,25 @@ public partial class Player : RigidBody3D
         if (Input.IsActionPressed("boost"))
         {
             ApplyCentralForce(Basis.Y * delta * Thrust);
+            BoosterParticlesC.Emitting = true;
+
+        }
+        else
+        {
+            BoosterParticlesC.Emitting = false;
         }
 
-        if (Input.IsActionPressed("rotate_left"))
-        {
-            ApplyTorque(new(0.0F, 0.0F, TorqueThrust * delta));
-        }
-        else if (Input.IsActionPressed("rotate_right"))
-        {
-            ApplyTorque(new(0.0F, 0.0F, -TorqueThrust * delta));
-        }
+        float direction = Input.GetAxis("rotate_right", "rotate_left");
+        HandleBoosterParticles(direction);
+        ApplyTorque(new(0.0F, 0.0F, direction * TorqueThrust * delta));
+        // if (Input.IsActionPressed("rotate_left"))
+        // {
+        //     ApplyTorque(new(0.0F, 0.0F, direction * delta));
+        // }
+        // else if (Input.IsActionPressed("rotate_right"))
+        // {
+        //     ApplyTorque(new(0.0F, 0.0F, direction * delta));
+        // }
     }
 
     private void HandleRocketSFX()
@@ -127,6 +140,26 @@ public partial class Player : RigidBody3D
         else if (Input.IsActionJustReleased("boost"))
         {
             RocketSFX.Stop();
+        }
+    }
+
+    private void HandleBoosterParticles(float direction)
+    {
+        // Left/right can seem mixed up because of how rotating the ship works
+        if (direction < 0)
+        {
+            BoosterParticlesL.Emitting = false;
+            BoosterParticlesR.Emitting = true;
+        }
+        else if (direction > 0)
+        {
+            BoosterParticlesL.Emitting = true;
+            BoosterParticlesR.Emitting = false;
+        }
+        else
+        {
+            BoosterParticlesL.Emitting = false;
+            BoosterParticlesR.Emitting = false;
         }
     }
 }
