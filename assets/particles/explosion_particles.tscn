@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dcecb8hw7dbrv"]
+[gd_scene load_steps=10 format=3 uid="uid://cqfldty25ck2p"]
 
 [sub_resource type="Gradient" id="Gradient_lkolc"]
 offsets = PackedFloat32Array(0.201923, 0.413462, 0.586538, 0.740385, 0.903846)
@@ -25,9 +25,9 @@ curve = SubResource("Curve_qubh3")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1onfr"]
 direction = Vector3(0, 1, 0)
 spread = 180.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 6.0
 initial_velocity_max = 16.0
+gravity = Vector3(0, 0, 0)
 damping_max = 3.0
 damping_curve = SubResource("CurveTexture_mygan")
 scale_curve = SubResource("CurveTexture_5bhb0")

@@ -1,10 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://jo5mje5xyoi0"]
+[gd_scene load_steps=10 format=3 uid="uid://jo5mje5xyoi0"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.cs" id="1_biogh"]
 [ext_resource type="AudioStream" uid="uid://b4ai1xrh51nbb" path="res://assets/audio/sfx/SFX - Death Explosion.ogg" id="2_0o3p1"]
 [ext_resource type="AudioStream" uid="uid://bcf2dy64k2sbd" path="res://assets/audio/sfx/SFX - Success.ogg" id="3_4hjnd"]
 [ext_resource type="AudioStream" uid="uid://bq4kqb6wp52wf" path="res://assets/audio/sfx/SFX - Main engine thrust.ogg" id="4_eeu7g"]
 [ext_resource type="PackedScene" uid="uid://ux6ivcx1ovdp" path="res://assets/particles/booster_particles.tscn" id="5_r1qdv"]
+[ext_resource type="PackedScene" uid="uid://cqfldty25ck2p" path="res://assets/particles/explosion_particles.tscn" id="6_gxu34"]
+[ext_resource type="PackedScene" uid="uid://c8dnrev6kk00x" path="res://assets/particles/success_particles.tscn" id="7_6gclu"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_v12v5"]
 
@@ -44,17 +46,23 @@ stream = ExtResource("3_4hjnd")
 unique_name_in_owner = true
 stream = ExtResource("4_eeu7g")
 
-[node name="BoosterParticlesL" parent="." instance=ExtResource("5_r1qdv")]
+[node name="BoosterParticles" type="Node3D" parent="."]
+
+[node name="BoosterParticlesL" parent="BoosterParticles" instance=ExtResource("5_r1qdv")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.295695, -1.00562, 0)
 emitting = false
 
-[node name="BoosterParticlesC" parent="." instance=ExtResource("5_r1qdv")]
+[node name="BoosterParticlesC" parent="BoosterParticles" instance=ExtResource("5_r1qdv")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00182235, -1.00562, 0)
 emitting = false
 
-[node name="BoosterParticlesR" parent="." instance=ExtResource("5_r1qdv")]
+[node name="BoosterParticlesR" parent="BoosterParticles" instance=ExtResource("5_r1qdv")]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.302736, -1.00562, 0)
 emitting = false
+
+[node name="ExplosionParticles" parent="." instance=ExtResource("6_gxu34")]
+
+[node name="SuccessParticles" parent="." instance=ExtResource("7_6gclu")]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://jfwajmrh6ca7"]
+[gd_scene load_steps=8 format=3 uid="uid://c8dnrev6kk00x"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5wvwh"]
 shading_mode = 0
@@ -27,9 +27,9 @@ curve = SubResource("Curve_uupei")
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2ssod"]
 direction = Vector3(0, 1, 0)
 spread = 180.0
-gravity = Vector3(0, 0, 0)
 initial_velocity_min = 3.0
 initial_velocity_max = 12.0
+gravity = Vector3(0, 0, 0)
 damping_min = 2.0
 damping_max = 4.0
 scale_curve = SubResource("CurveTexture_oh0x3")
