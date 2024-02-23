@@ -28,7 +28,7 @@ mesh = SubResource("CylinderMesh_v12v5")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00012207, 0)
 shape = SubResource("BoxShape3D_pni5u")
 
-[node name="SFXPlayers" type="Node3D" parent="."]
+[node name="SFXPlayers" type="Node" parent="."]
 
 [node name="ExplosionSFX" type="AudioStreamPlayer" parent="SFXPlayers"]
 unique_name_in_owner = true
@@ -38,6 +38,6 @@ stream = ExtResource("2_0o3p1")
 unique_name_in_owner = true
 stream = ExtResource("3_4hjnd")
 
-[node name="RocketSFX" type="AudioStreamPlayer3D" parent="SFXPlayers"]
+[node name="RocketSFX" type="AudioStreamPlayer3D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_eeu7g")
