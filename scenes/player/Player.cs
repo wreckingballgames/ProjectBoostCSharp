@@ -115,6 +115,7 @@ public partial class Player : RigidBody3D
 
     private void HandleInput(float delta)
     {
+        // Boost Input
         if (Input.IsActionPressed("boost"))
         {
             ApplyCentralForce(Basis.Y * delta * Thrust);
@@ -125,9 +126,20 @@ public partial class Player : RigidBody3D
             BoosterParticlesC.Emitting = false;
         }
 
+        // Rotation Input
         float direction = Input.GetAxis("rotate_right", "rotate_left");
         HandleBoosterParticles(direction);
         ApplyTorque(new(0.0F, 0.0F, direction * TorqueThrust * delta));
+
+        // Quit & Reset Input
+        if (Input.IsActionJustPressed("ui_cancel"))
+        {
+            GetTree().Quit();
+        }
+        else if (Input.IsActionJustPressed("ui_end"))
+        {
+            GetTree().ReloadCurrentScene();
+        }
     }
 
     private void HandleRocketSFX()
