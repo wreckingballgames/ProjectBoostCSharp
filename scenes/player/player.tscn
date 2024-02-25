@@ -1,8 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://jo5mje5xyoi0"]
+[gd_scene load_steps=16 format=3 uid="uid://jo5mje5xyoi0"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.cs" id="1_biogh"]
 [ext_resource type="AudioStream" uid="uid://b4ai1xrh51nbb" path="res://assets/audio/sfx/SFX - Death Explosion.ogg" id="2_0o3p1"]
+[ext_resource type="Material" uid="uid://byx7257f2c5jf" path="res://assets/materials/rocket_white.tres" id="2_885k6"]
 [ext_resource type="AudioStream" uid="uid://bcf2dy64k2sbd" path="res://assets/audio/sfx/SFX - Success.ogg" id="3_4hjnd"]
+[ext_resource type="Material" uid="uid://drcrqjhrd7be" path="res://assets/materials/rocket_red.tres" id="3_gafhg"]
 [ext_resource type="AudioStream" uid="uid://bq4kqb6wp52wf" path="res://assets/audio/sfx/SFX - Main engine thrust.ogg" id="4_eeu7g"]
 [ext_resource type="PackedScene" uid="uid://ux6ivcx1ovdp" path="res://assets/particles/booster_particles.tscn" id="5_r1qdv"]
 [ext_resource type="PackedScene" uid="uid://cqfldty25ck2p" path="res://assets/particles/explosion_particles.tscn" id="6_gxu34"]
@@ -11,9 +13,6 @@
 [sub_resource type="CylinderMesh" id="CylinderMesh_v12v5"]
 top_radius = 0.2
 bottom_radius = 0.3
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cr1yy"]
-albedo_color = Color(0.976471, 0.305882, 0.301961, 1)
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_0rgun"]
 top_radius = 0.0
@@ -46,12 +45,13 @@ transform = Transform3D(1.09285, 0, 0, 0, 1.09285, 0, 0, 0, 1.09285, 0, 0, 0)
 
 [node name="Body" type="MeshInstance3D" parent="Rocket"]
 transform = Transform3D(-0.756205, 0, -6.61095e-08, 0, 0.805168, 0, 6.61095e-08, 0, -0.756205, 0, -0.179915, 0)
+material_override = ExtResource("2_885k6")
 mesh = SubResource("CylinderMesh_v12v5")
 skeleton = NodePath("../..")
 
 [node name="Cone" type="MeshInstance3D" parent="Rocket"]
 transform = Transform3D(-0.376178, 0, -3.28865e-08, 0, 0.178569, 0, 3.28865e-08, 0, -0.376178, 0, 0.802877, 0)
-material_override = SubResource("StandardMaterial3D_cr1yy")
+material_override = ExtResource("3_gafhg")
 mesh = SubResource("CylinderMesh_0rgun")
 skeleton = NodePath("../..")
 
