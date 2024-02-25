@@ -37,44 +37,52 @@ material = ExtResource("1_lp2kb")
 
 [node name="Walls" type="Node" parent="."]
 
-[node name="Wall" type="CSGBox3D" parent="Walls"]
+[node name="Wall" type="CSGBox3D" parent="Walls" groups=["hazard"]]
 transform = Transform3D(0.0251301, -0.999684, 0, 0.999684, 0.0251301, 0, 0, 0, 1, -13.1457, 4, 0)
 material_override = ExtResource("1_lp2kb")
+use_collision = true
 size = Vector3(10, 2.5, 3)
 
-[node name="Wall2" type="CSGBox3D" parent="Walls"]
+[node name="Wall2" type="CSGBox3D" parent="Walls" groups=["hazard"]]
 transform = Transform3D(0.584972, -0.811054, 0, 0.811054, 0.584972, 0, 0, 0, 1, -11.2234, 12.0031, -0.501884)
 material_override = ExtResource("1_lp2kb")
+use_collision = true
 size = Vector3(10, 2.5, 3)
 
-[node name="Wall3" type="CSGBox3D" parent="Walls"]
+[node name="Wall3" type="CSGBox3D" parent="Walls" groups=["hazard"]]
 transform = Transform3D(1, 0.000837728, 0, -0.000837728, 1, 0, 0, 0, 1, -10.2486, 13.1804, -0.093153)
 material_override = ExtResource("1_lp2kb")
+use_collision = true
 size = Vector3(10, 2.5, 3)
 
-[node name="Wall4" type="CSGBox3D" parent="Walls"]
+[node name="Wall4" type="CSGBox3D" parent="Walls" groups=["hazard"]]
 transform = Transform3D(0.989306, -0.145859, 0, 0.145859, 0.989306, 0, 0, 0, 1, -0.905862, 12.8074, 0)
 material_override = ExtResource("1_lp2kb")
+use_collision = true
 size = Vector3(10, 2.5, 3)
 
-[node name="Wall5" type="CSGBox3D" parent="Walls"]
+[node name="Wall5" type="CSGBox3D" parent="Walls" groups=["hazard"]]
 transform = Transform3D(0.997915, 0.0645497, 0, -0.0645497, 0.997915, 0, 0, 0, 1, 6.3352, 14.1537, -0.0276222)
 material_override = ExtResource("1_lp2kb")
+use_collision = true
 size = Vector3(10, 2.5, 3)
 
-[node name="Wall6" type="CSGBox3D" parent="Walls"]
+[node name="Wall6" type="CSGBox3D" parent="Walls" groups=["hazard"]]
 transform = Transform3D(0.89381, 0.448446, 0, -0.448446, 0.89381, 0, 0, 0, 1, 9.71998, 12.0372, 0)
 material_override = ExtResource("1_lp2kb")
+use_collision = true
 size = Vector3(10, 2.5, 3)
 
-[node name="Wall7" type="CSGBox3D" parent="Walls"]
+[node name="Wall7" type="CSGBox3D" parent="Walls" groups=["hazard"]]
 transform = Transform3D(0.471258, 0.881995, 0, -0.881995, 0.471258, 0, 0, 0, 1, 13.223, 11.8399, -0.673281)
 material_override = ExtResource("1_lp2kb")
+use_collision = true
 size = Vector3(10, 2.5, 3)
 
-[node name="Wall8" type="CSGBox3D" parent="Walls"]
+[node name="Wall8" type="CSGBox3D" parent="Walls" groups=["hazard"]]
 transform = Transform3D(-0.0123566, 0.999924, 0, -0.999924, -0.0123566, 0, 0, 0, 1, 13.4779, 4.32032, 0)
 material_override = ExtResource("1_lp2kb")
+use_collision = true
 size = Vector3(10, 2.5, 3)
 
 [node name="Background" type="Node" parent="."]
