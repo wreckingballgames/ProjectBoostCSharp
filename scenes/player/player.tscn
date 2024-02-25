@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://jo5mje5xyoi0"]
+[gd_scene load_steps=14 format=3 uid="uid://jo5mje5xyoi0"]
 
 [ext_resource type="Script" path="res://scenes/player/Player.cs" id="1_biogh"]
 [ext_resource type="AudioStream" uid="uid://b4ai1xrh51nbb" path="res://assets/audio/sfx/SFX - Death Explosion.ogg" id="2_0o3p1"]
@@ -18,13 +18,7 @@ bottom_radius = 0.3
 top_radius = 0.0
 bottom_radius = 0.4
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vel43"]
-albedo_color = Color(0.647059, 0.0117647, 0.207843, 1)
-
 [sub_resource type="BoxMesh" id="BoxMesh_mjjgf"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ljf8d"]
-albedo_color = Color(0.647059, 0.0117647, 0.207843, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_pni5u"]
 size = Vector3(1, 1.98999, 1)
@@ -57,7 +51,7 @@ skeleton = NodePath("../..")
 
 [node name="ThrusterL" type="MeshInstance3D" parent="Rocket"]
 transform = Transform3D(0.203993, 0.149661, 0, -0.0680732, 0.448485, 0, 0, 0, 0.199731, -0.274611, -0.741516, 0)
-material_override = SubResource("StandardMaterial3D_vel43")
+material_override = ExtResource("3_gafhg")
 mesh = SubResource("BoxMesh_mjjgf")
 
 [node name="BoosterParticlesL" parent="Rocket/ThrusterL" instance=ExtResource("5_r1qdv")]
@@ -66,7 +60,7 @@ transform = Transform3D(-1.1352, 1.83824, -9.92421e-08, 4.31461, 1.67712, 3.7719
 
 [node name="ThrusterC" type="MeshInstance3D" parent="Rocket"]
 transform = Transform3D(0.215052, 0, 0, 0, 0.472797, 0, 0, 0, 0.199731, -0.0023694, -0.794339, 0)
-material_override = SubResource("StandardMaterial3D_ljf8d")
+material_override = ExtResource("3_gafhg")
 mesh = SubResource("BoxMesh_mjjgf")
 
 [node name="BoosterParticlesC" parent="Rocket/ThrusterC" instance=ExtResource("5_r1qdv")]
@@ -75,7 +69,7 @@ transform = Transform3D(-4.65004, 0, -4.0652e-07, 0, 2.11507, 0, 4.37703e-07, 0,
 
 [node name="ThrusterR" type="MeshInstance3D" parent="Rocket"]
 transform = Transform3D(0.203939, -0.150021, 0, 0.0682369, 0.448365, 0, 0, 0, 0.199731, 0.265809, -0.741516, 0)
-material_override = SubResource("StandardMaterial3D_vel43")
+material_override = ExtResource("3_gafhg")
 mesh = SubResource("BoxMesh_mjjgf")
 
 [node name="BoosterParticlesR" parent="Rocket/ThrusterR" instance=ExtResource("5_r1qdv")]
