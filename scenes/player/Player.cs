@@ -9,7 +9,7 @@ public partial class Player : RigidBody3D
     [Export(PropertyHint.Range, "750.0F, 3000.0F")]
     private float Thrust {get; set;} = 1000.0F;
 
-    private String NextLevelPath {get; set;}
+    private string NextLevelPath {get; set;}
     private bool IsTransitioning {get; set;} = false;
     private float TransitionTime {get; set;} = 1.5F;
 
@@ -56,6 +56,7 @@ public partial class Player : RigidBody3D
         {
             return;
         }
+
         if (body.IsInGroup("hazard"))
         {
             CrashSequence();
@@ -118,7 +119,6 @@ public partial class Player : RigidBody3D
         {
             ApplyCentralForce(Basis.Y * delta * Thrust);
             BoosterParticlesC.Emitting = true;
-
         }
         else
         {
@@ -128,14 +128,6 @@ public partial class Player : RigidBody3D
         float direction = Input.GetAxis("rotate_right", "rotate_left");
         HandleBoosterParticles(direction);
         ApplyTorque(new(0.0F, 0.0F, direction * TorqueThrust * delta));
-        // if (Input.IsActionPressed("rotate_left"))
-        // {
-        //     ApplyTorque(new(0.0F, 0.0F, direction * delta));
-        // }
-        // else if (Input.IsActionPressed("rotate_right"))
-        // {
-        //     ApplyTorque(new(0.0F, 0.0F, direction * delta));
-        // }
     }
 
     private void HandleRocketSFX()
